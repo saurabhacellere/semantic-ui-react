@@ -120,8 +120,7 @@ export default class Transition extends Component {
     this.updateStatus()
   }
 
-  // eslint-disable-next-line camelcase
-  UNSAFE_componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps) {
     debug('componentWillReceiveProps()')
 
     const { current: status, next } = this.computeStatuses(nextProps)
@@ -250,13 +249,16 @@ export default class Transition extends Component {
 
   computeStatuses = (props) => {
     const { status } = this.state
-    const { visible } = props
+    const { visible, unmountOnHide } = props
 
     if (visible) {
       return {
         current: status === Transition.UNMOUNTED && Transition.EXITED,
         next:
-          status !== Transition.ENTERING && status !== Transition.ENTERED && Transition.ENTERING,
+          status !== Transition.ENTERING &&
+          status !== Transition.ENTERED &&
+          (status !== Transition.EXITED || !unmountOnHide) &&
+          Transition.ENTERING,
       }
     }
 
