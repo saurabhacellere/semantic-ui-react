@@ -501,6 +501,11 @@ export {
   StrictModalDescriptionProps,
 } from './dist/commonjs/modules/Modal/ModalDescription'
 export {
+  default as ModalDimmer,
+  ModalDimmerProps,
+  StrictModalDimmerProps,
+} from './dist/commonjs/modules/Modal/ModalDimmer'
+export {
   default as ModalHeader,
   ModalHeaderProps,
   StrictModalHeaderProps,
