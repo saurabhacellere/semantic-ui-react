@@ -1,41 +1,63 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Button, Modal } from 'semantic-ui-react'
 
-class ModalExampleSize extends Component {
-  state = { open: false }
-
-  show = (size) => () => this.setState({ size, open: true })
-  close = () => this.setState({ open: false })
-
-  render() {
-    const { open, size } = this.state
-
-    return (
-      <div>
-        <Button onClick={this.show('mini')}>Mini</Button>
-        <Button onClick={this.show('tiny')}>Tiny</Button>
-        <Button onClick={this.show('small')}>Small</Button>
-        <Button onClick={this.show('large')}>Large</Button>
-        <Button onClick={this.show('fullscreen')}>Fullscreen</Button>
-
-        <Modal size={size} open={open} onClose={this.close}>
-          <Modal.Header>Delete Your Account</Modal.Header>
-          <Modal.Content>
-            <p>Are you sure you want to delete your account</p>
-          </Modal.Content>
-          <Modal.Actions>
-            <Button negative>No</Button>
-            <Button
-              positive
-              icon='checkmark'
-              labelPosition='right'
-              content='Yes'
-            />
-          </Modal.Actions>
-        </Modal>
-      </div>
-    )
+const reducer = (state, action) => {
+  switch (action.type) {
+    case 'close':
+      return { open: false }
+    case 'open':
+      return { open: true, size: action.size }
+    default:
+      throw new Error('Unsupported action...')
   }
+}
+
+const ModalExampleSize = () => {
+  const [state, dispatch] = React.useReducer(reducer, { open: false })
+  const { open, size } = state
+
+  return (
+    <>
+      <Button onClick={() => dispatch({ type: 'open', size: 'mini' })}>
+        Mini
+      </Button>
+      <Button onClick={() => dispatch({ type: 'open', size: 'tiny' })}>
+        Tiny
+      </Button>
+      <Button onClick={() => dispatch({ type: 'open', size: 'small' })}>
+        Small
+      </Button>
+      <Button onClick={() => dispatch({ type: 'open', size: 'large' })}>
+        Large
+      </Button>
+      <Button onClick={() => dispatch({ type: 'open', size: 'fullscreen' })}>
+        Fullscreen
+      </Button>
+
+      <Modal
+        size={size}
+        open={open}
+        onClose={() => dispatch({ type: 'close' })}
+      >
+        <Modal.Header>Delete Your Account</Modal.Header>
+        <Modal.Content>
+          <p>Are you sure you want to delete your account</p>
+        </Modal.Content>
+        <Modal.Actions>
+          <Button negative onClick={() => dispatch({ type: 'close' })}>
+            No
+          </Button>
+          <Button
+            content='Yes'
+            icon='checkmark'
+            labelPosition='right'
+            positive
+            onClick={() => dispatch({ type: 'close' })}
+          />
+        </Modal.Actions>
+      </Modal>
+    </>
+  )
 }
 
 export default ModalExampleSize
