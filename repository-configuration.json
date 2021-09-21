@@ -1,0 +1,100 @@
+{
+    "gammaAccess": {
+        "url": "",
+        "token": ""
+    },
+    "repositories": [
+        {
+            "dataDir": "./EMBOLD_DATA",
+            "repository": {
+                "uid": "a1e715408db654187f8fa4f7f2809341",
+                "projectName": "Javascript-semantic",
+                "languages": [
+                    "JAVASCRIPT"
+                ],
+                "sources": {
+                    "baseDir": "$GITHUB_WORKSPACE",
+                    "exclusions": [
+                        "node_modules",
+                        ".min.js",
+                        "dist",
+                        "external",
+                        "assets",
+                        "gulp",
+                        "grunt",
+                        "libs",
+                        "-bundle.js",
+                        ".bundle.js",
+                        "swagger-ui",
+                        ".config.js",
+                        "-config.js",
+                        "UNKNOWN_FILE",
+                        ".git",
+                        ".ebextensions",
+                        "test",
+                        ".lib",
+                        ".library",
+                        ".zip"
+                    ]
+                }
+            },
+            "settings": {
+                "additionalOptions": [],
+                "includePaths": []
+            },
+            "modules": {
+                "codeissues": [
+                    {
+                        "name": "gamma_js",
+                        "enabled": true,
+                        "config": {
+                            "rules": [],
+                            "options": []
+                        }
+                    },
+                    {
+                        "name": "jshint",
+                        "enabled": false,
+                        "config": {
+                            "rules": [],
+                            "options": []
+                        }
+                    },
+                    {
+                        "name": "eslint",
+                        "enabled": true,
+                        "config": {
+                            "rules": [],
+                            "options": []
+                        }
+                    },
+                    {
+                        "name": "gamma_generic",
+                        "enabled": false,
+                        "config": {
+                            "rules": [],
+                            "options": [
+                                {
+                                    "name": "reportDir",
+                                    "type": "upload",
+                                    "value": "",
+                                    "required": true
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "relevance": [
+                    {
+                        "name": "relevance",
+                        "enabled": true,
+                        "config": {
+                            "rules": [],
+                            "options": []
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}
