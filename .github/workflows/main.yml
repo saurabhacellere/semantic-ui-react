@@ -6,6 +6,8 @@ jobs:
     name: Embold scan
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - name: Embold scan step
         id: embold
         uses: embold/github-action-docker@v0.2
@@ -13,4 +15,4 @@ jobs:
           embold-url: 'https://oss.emboldci.dev'
           embold-token: ${{ secrets.EMBOLD_TOKEN }}
           repo-config: '/github/workspace/repository-configuration.json'
-          repo-uid: 'a1e715408db654187f8fa4f7f2809341'
+          repo-uid: 'a1e715408db654187f8fa4f7f2809341' 
